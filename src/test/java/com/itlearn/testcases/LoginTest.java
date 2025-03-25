@@ -21,11 +21,11 @@ public class LoginTest extends BaseTest {
 	public void verifyLogin() throws IOException
 	{
 		LoginPage lp=new LoginPage(driver);
-		String username ="Demo12";
-		String password ="Test123456$";
+		String username ="hoa.tang+1@base.vn";
+		String password ="Hoa592001";
 		lp.loginToPortal(username, password);
 		
-		if(username.equals("Demo12") && password.equals("Test123456$"))
+		if(username.equals("hoa.tang+1@base.vn") && password.equals("Hoa592001"))
 		{
 			System.out.println("Test Passed");
 			Assert.assertTrue(true);

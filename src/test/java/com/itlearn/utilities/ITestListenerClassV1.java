@@ -1,4 +1,4 @@
-package com.itlearn.utility;
+package com.itlearn.utilities;
 
 import java.io.File;
 
@@ -14,7 +14,7 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class ITestListenerClass implements ITestListener {
+class ITestListenerClass implements ITestListener {
 	ExtentSparkReporter htmlReporter;
 	ExtentReports reports;
 	ExtentTest test;
@@ -40,29 +40,30 @@ public class ITestListenerClass implements ITestListener {
 	   
 	  }
 
-	
-	  public void onTestSuccess(ITestResult result) {
+	public void onTestFailure(ITestResult result) {
+		System.out.println("Name of test method failed: " + result.getName());
+		test = reports.createTest(result.getName());
+
+		String screenShotPath = System.getProperty("user.dir") + "\\Screenshots\\" + result.getName() + ".png";
+
+		test.log(Status.FAIL, MarkupHelper.createLabel("Name of the failed test case is: " + result.getName(), ExtentColor.RED))
+				.addScreenCaptureFromPath(screenShotPath);
+
+		File screenShotFile = new File(screenShotPath);
+		if (screenShotFile.exists()) {
+			test.fail("Captured Screenshot is below:").addScreenCaptureFromPath(screenShotPath);
+		}
+	}
+
+
+	public void onTestSuccess(ITestResult result) {
 	  System.out.println("Name of the test method successfully excuted "+result.getName());
 	   test=reports.createTest(result.getName());
 	   test.log(Status.PASS, MarkupHelper.createLabel("Name of the skip test case is: "+result.getName(),ExtentColor.GREEN));
 	  }
 
 	
-	  public void onTestFailure(ITestResult result) {
-	    System.out.println("Name of test method failed:"+result.getName());
-	    test=reports.createTest(result.getName());
-	    //test.log(Status.FAIL, MarkupHelper.createLabel("Name of the skip test case is: "+result.getName(),ExtentColor.RED));
-	    test.log(Status.FAIL, MarkupHelper.createLabel("Name of the failed  test case is: "+result.getName(),ExtentColor.RED)) .addScreenCaptureFromPath(screeshot +failedTest + ".png" );
-	    String screenShotPath= System.getProperty("user.dir") +"\\Screenshots\\" + result.getName() + ".png";
-	    
-	    File screenShotFile = new File(screenShotPath);
-	    
-	    if(screenShotFile.exists())
-	    {
-	    	test.fail("Captured Screenshot is below:" +test.addScreenCaptureFromPath(screenShotPath));
-	    }
-	  }
-
+	
 
 	  public void onTestSkipped(ITestResult result) {
 	    System.out.println("Name of test method skipped "+result.getName());

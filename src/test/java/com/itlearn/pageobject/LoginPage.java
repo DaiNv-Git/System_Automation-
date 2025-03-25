@@ -22,14 +22,14 @@ public class LoginPage extends BaseTest{
 		
 		PageFactory.initElements(driver,this);
 	}
-	@FindBy(xpath="//*[@id=\"loginlabel\"]") WebElement loginclick;
+	@FindBy(xpath="//*[@id=\"header\"]/div/div/div[2]/a") WebElement loginclick;
 	
 	
-@FindBy(name="log") WebElement uname;
+	@FindBy(name="email") WebElement uname;
 	
-	@FindBy(name="pwd") WebElement pass;
+	@FindBy(id="login-password") WebElement pass;
 	
-	@FindBy(name="wp-submit") WebElement loginButton;
+	@FindBy(xpath="//*[@id=\"authform\"]/div[2]/div[6]/div[2]") WebElement loginButton;
 
 	@FindBy(xpath="//*[@id=\"gk-login-toggle\"]/i") WebElement logoutimage;
 	
