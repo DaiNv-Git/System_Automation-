@@ -4,11 +4,14 @@ package com.itlearn.pageobject;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
@@ -57,5 +60,26 @@ public class BaseTest {
 	 FileUtils.copyFile(src, srcpath);
 	 
  }
+ 	//choose chorm to test
+	private static WebDriver initChromeDriver(String appURL) {
+		System.out.println("Launching Chrome browser...");
+		System.setProperty("webdriver.chrome.driver", "resource\\drivers\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to(appURL);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		return driver;
+	}
 
+	private static WebDriver initEdgeDriver(String appURL) {
+		System.out.println("Launching MS Edge browser...");
+		System.setProperty("webdriver.edge.driver", "resource\\drivers\\msedgedriver.exe");
+		WebDriver driver = new EdgeDriver();
+		driver.manage().window().maximize();
+		driver.navigate().to(appURL);
+		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		return driver;
+	}
 }
