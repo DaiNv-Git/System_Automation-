@@ -3,13 +3,15 @@ package com.itlearn.pageobject;
 import static org.testng.Assert.assertEquals;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class LoginPage extends BaseTest{
@@ -25,7 +27,7 @@ public class LoginPage extends BaseTest{
 	@FindBy(xpath="//*[@id=\"header\"]/div/div/div[2]/a") WebElement loginclick;
 	
 	
-	@FindBy(name="email") WebElement uname;
+	@FindBy(xpath="//*[@id=\"authform\"]/div[2]/div[1]/div[2]/input") WebElement uname;
 	
 	@FindBy(id="login-password") WebElement pass;
 	
@@ -38,13 +40,32 @@ public class LoginPage extends BaseTest{
 
 
 	public void loginToPortal(String username, String password) {
-		// TODO Auto-generated method stub
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 		loginclick.click();
+
+		// Switch to the new window or tab
+		String originalWindow = driver.getWindowHandle();
+		for (String windowHandle : driver.getWindowHandles()) {
+			if (!windowHandle.equals(originalWindow)) {
+				driver.switchTo().window(windowHandle);
+				break;
+			}
+		}
+
+		// Wait until the username field is visible and ready
+		wait.until(ExpectedConditions.visibilityOf(uname));
 		uname.sendKeys(username);
+
+		wait.until(ExpectedConditions.visibilityOf(pass));
 		pass.sendKeys(password);
+
+		wait.until(ExpectedConditions.elementToBeClickable(loginButton));
 		loginButton.click();
-		
 	}
+
+
+
 
 	public void logout()
 	{

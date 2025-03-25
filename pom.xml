@@ -54,8 +54,9 @@
     <artifactId>poi-ooxml</artifactId>
     <version>5.2.2</version>
 </dependency>
-  
-  <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+      <!-- Thêm vào pom.xml -->
+
+      <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-core</artifactId>
@@ -82,15 +83,24 @@
     <artifactId>selenium-java</artifactId>
     <version>4.8.1</version>
 </dependency>
-  
-  <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+<dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-simple</artifactId>
+    <version>2.0.9</version>
+</dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.testng/testng -->
 <dependency>
     <groupId>org.testng</groupId>
     <artifactId>testng</artifactId>
     <version>7.7.0</version>
     <scope>test</scope>
 </dependency>
-  
+  <dependency>
+          <groupId>io.github.bonigarcia</groupId>
+          <artifactId>webdrivermanager</artifactId>
+          <version>6.0.0</version>
+  </dependency>
   <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 <dependency>
     <groupId>com.aventstack</groupId>

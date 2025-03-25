@@ -40,19 +40,20 @@ public class LoginTest extends BaseTest {
 	@Test(priority =2)
 	public void fetchDashboardText() throws IOException
 	{
-		
-		String dashtext= driver.findElement(By.xpath("//*[@id=\"login-list\"]/li[1]/a")).getText();
-		String actualdash= "Dashboard";
-		
-		if(actualdash.equals("Dashboard"))
+
+		String dashtext= driver.findElement(By.xpath("//*[@id=\"menu\"]/div/div[1]/div/div[1]")).getText();
+		String actualdash= "Tăng Hoa1111";
+		//chi de test in ra log 
+		if(actualdash.equals("Tăng Hoa1111"))
 		{
 			System.out.println("Test Passed");
-			
+
 		}
 		else
 		{
 			captureScreenShot(driver,"fetchDashboardText");
 		}
+		//quyet dinh co pass hay không 
 		assertEquals(dashtext, actualdash);
 	}
 
