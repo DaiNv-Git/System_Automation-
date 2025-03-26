@@ -26,7 +26,6 @@ public class LoginPage extends BaseTest{
 	}
 	@FindBy(xpath="//*[@id=\"header\"]/div/div/div[2]/a") WebElement loginclick;
 	
-	
 	@FindBy(xpath="//*[@id=\"authform\"]/div[2]/div[1]/div[2]/input") WebElement uname;
 	
 	@FindBy(id="login-password") WebElement pass;

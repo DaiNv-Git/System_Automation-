@@ -42,12 +42,11 @@ public class LoginTest extends BaseTest {
 	{
 
 		String dashtext= driver.findElement(By.xpath("//*[@id=\"menu\"]/div/div[1]/div/div[1]")).getText();
-		String actualdash= "Tăng Hoa1111";
+		String actualdash= "Tăng Hoa";
 		//chi de test in ra log 
-		if(actualdash.equals("Tăng Hoa1111"))
+		if(actualdash.equals("Tăng Hoa"))
 		{
 			System.out.println("Test Passed");
-
 		}
 		else
 		{
